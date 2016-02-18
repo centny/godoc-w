@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="keywords" content="API DOCUMENT">
+    <meta name="description" content="API DOCUMENT">
+    <title>API DOCUMENT</title>
+    <style>
+    .ng-cloak {
+        display: none;
+    }
+    </style>
+</head>
+
+<body ng-controller="mainCtrl" class="ng-cloak">
+	
+	<header-dir data="appData"></header-dir>
+	
+	<main-dir data="appData"></main-dir>
+
+    <!-- build:css(./) style/vendor.min.css -->
+    <!-- bower:css -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- build:css style/bundle.min.css -->
+    <link rel="stylesheet" href="style/app.css">
+    <!-- endbuild -->
+    <!-- build:js(./) script/vendor.min.js -->
+    <!-- bower:js -->
+    <!-- endinject -->
+    <script type="text/javascript" src="/bower_components/moment/locale/zh-cn.js"></script>
+    <!-- endbuild -->
+    <!-- build:js script/bundle.min.js -->
+    <script type="text/javascript" src="/service/loading-layer.js"></script>
+    <script type="text/javascript" src="/application/data.js"></script>
+    <script type="text/javascript" src="/application/template.js"></script>
+    <script type="text/javascript" src="/application/app.js"></script>
+    <script type="text/javascript" src="/directive/header/header.js"></script>
+    <script type="text/javascript" src="/directive/main/main.js"></script>
+    <script type="text/javascript" src="/directive/aside/aside.js"></script>
+    <script type="text/javascript" src="/directive/section/section.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

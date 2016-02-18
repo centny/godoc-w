@@ -1,0 +1,312 @@
+@import 'common/reset';
+@import 'common/mixin';
+
+/*整体部分*/
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+/*滑动轨道*/
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/*滑块*/
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+
+/*滑块效果*/
+
+::-webkit-scrollbar-thumb:hover {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+header {
+    color: white;
+    background: #222;
+    overflow: hidden;
+    min-height: 4.2rem;
+    box-sizing: border-box;
+    .logo {
+        padding: 1rem;
+        float: left;
+        font-family: 'Impact';
+        font-size: 2.3rem;
+        line-height: 100%;
+        color: #F24747;
+        font-weight: bold;
+        text-shadow: 1px 1px 0 rgba(250, 250, 250, .8);
+        span {
+            text-shadow: none;
+            color: white;
+            font-size: 1.8rem;
+            vertical-align: top;
+            margin: 0 0 0 0.5rem;
+            position: relative;
+            top: -2px;
+        }
+    }
+    .search-bar {
+        float: right;
+        width: 30%;
+        min-width: 500px;
+        position: relative;
+        margin: 1rem 7rem 1rem 1rem;
+        table {
+            width: 100%;
+        }
+        select {
+            min-width: 6rem;
+            height: 2.3rem;
+            border-radius: 5px 0 0 5px;
+            border: 1px solid #444;
+            vertical-align: middle;
+            box-sizing: border-box;
+        }
+        input {
+            width: 100%;
+            height: 2.3rem;
+            border: solid #444;
+            border-width: 1px 0 1px 0;
+            vertical-align: middle;
+            box-sizing: border-box;
+            padding: 0 0.8rem;
+        }
+        button {
+            position: absolute;
+            top: 0;
+            right: -6rem;
+            width: 6rem;
+            height: 2.3rem;
+            font-size: 1rem;
+            padding: 0 1rem;
+            border-radius: 0 5px 5px 0;
+            border: 1px solid #444;
+            vertical-align: middle;
+            box-sizing: border-box;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+}
+
+.nav-list {
+    float: right;
+    .item {
+        border-left:1px solid black;
+        .k {
+            border-left:1px solid #444;
+            text-align:center;
+            line-height: 4.2rem;
+            padding:0 15px;
+            min-width:50px;
+            display:inline-block;
+            text-decoration: none;
+        }
+    }
+}
+
+.tags-select{
+    float:right;
+    margin: 1rem;
+    select {
+        min-width: 6rem;
+        height: 2.3rem;
+        border-radius: 5px;
+        border: 1px solid #444;
+        vertical-align: middle;
+        box-sizing: border-box;
+    }
+}
+
+main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 4.2rem;
+    bottom: 0;
+    .table-v {
+        width: 100%;
+        height: 100%;
+        .aside-v {
+            position: relative;
+            width: 280px;
+        }
+        .section-v {
+            position: relative;
+        }
+    }
+}
+
+.text-ellipsis {
+    @include text-ellipsis;
+}
+
+aside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    background: #444;
+    box-shadow: -10px 0 5px rgba(0, 0, 0, .1) inset;
+    color: #ABABAB;
+    overflow: auto;
+    white-space: nowrap;
+    dt {
+        background: #363636;
+        color: white;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        &:hover,
+        &.active {
+            background: #111;
+            color: #F24747;
+        }
+        p {
+            // color: #ABABAB;
+            // font-size: 12px;
+        }
+    }
+    dd {
+        .title {
+            font-size: 12px;
+        }
+    }
+    b {
+        color: white;
+        font-weight: normal;
+    }
+    li {
+        &::before {
+            content: ':-';
+            position: absolute;
+            text-indent: 0;
+        }
+        text-indent: 15px;
+        position:relative;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #363636;
+        cursor: pointer;
+        &:hover,
+        &.active {
+            background: #111;
+            color: white;
+            b {
+                color: #F24747;
+            }
+        }
+    }
+}
+
+section {
+    position: absolute;
+    left: 280px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.label-list{
+    margin-top:-8px;
+}
+
+article {
+    color: #444;
+    border-bottom: 1px solid #dfdfdf;
+    line-height: 2;
+    dl {
+        padding: 1rem 2rem;
+    }
+    dt {
+        b {
+            font-size: 20px;
+        }
+        p {
+            color: #666;
+        }
+        .time {
+            float: right;
+            color: #666;
+            span {
+                margin-left: 1rem;
+            }
+        }
+        label {
+            border: 1px solid #d0d0d0;
+            border-radius: 5px;
+            padding: 0.2rem 0.5rem;
+            display: inline-block;
+            margin: 0 0.5rem 0.5rem 0;
+            font-size: 12px;
+            line-height: 100%;
+        }
+    }
+    dd {
+        border-bottom: 1px dashed #acacac;
+        padding: 0 0 2rem;
+    }
+    .table {
+        border: 1px solid #dfdfdf;
+        width: 100%;
+        text-align: left;
+        line-height: 2;
+        margin-bottom: -1px;
+        th {
+            padding: 0.2rem 1rem;
+            border: 1px solid #dfdfdf;
+            background: #f2f2f2;
+        }
+        td {
+            padding: 0.5rem 1rem;
+            border: 1px solid #dfdfdf;
+        }
+    }
+}
+
+h1 {
+    color: darkgray;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    background: cornsilk;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+h4 {
+    padding: 1rem 0 0.3rem;
+    &::before {
+        content: '● ';
+    }
+}
+
+a,
+.color-pink {
+    color: #F54747;
+}
+
+.color-dodgerblue {
+    color: dodgerblue;
+}
+
+.color-limegreen {
+    color: limegreen;
+}
+
+.color-darkcyan {
+    color: darkcyan;
+}

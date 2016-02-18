@@ -1,0 +1,23 @@
+@mixin transition($property:all, $duration:.3s, $timing:ease-out, $delay:null) {
+    transition: $property $duration $timing $delay;
+}
+
+@mixin line-clamp($clamp) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $clamp;
+    -webkit-box-orient: vertical;
+}
+
+@mixin text-ellipsis {
+    overflow: hidden;
+    word-wrap: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
+@mixin overflow-scroll {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}

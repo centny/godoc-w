@@ -1,0 +1,70 @@
+* {
+    font-family: 'Microsoft YaHei', arial, sans-serif, "Open Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+body {
+    font-size:14px;
+    -webkit-text-size-adjust: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #0095CE;
+    text-decoration: underline;
+}
+
+a,
+button,
+select,
+input {
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+pre{
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 2;
+}
+
+article,
+aside,
+dialog,
+footer,
+header,
+section,
+footer,
+nav,
+figure,
+menu,
+main {
+    display: block
+}

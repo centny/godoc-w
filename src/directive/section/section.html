@@ -1,0 +1,131 @@
+<section>
+	<article ng-repeat="item in data.pkgs" id="i{{$index}}">
+		<h1 title="{{item.name}}">
+			{{item.name}}
+			<span> / </span>
+			{{item.title || '工程地址'}}
+		</h1>
+		<dl ng-repeat="func in item.funcs" id="i{{$parent.$index + func.name}}">
+			<dt>
+				<div class="color-darkcyan">
+					<span class="time">
+						<span>作者：{{func.author.name}}</span>
+						<span>{{func.author.date | dateFormat}}</span>
+					</span>
+					<b>{{func.name}}</b>
+					<b> / </b>
+					<b>{{func.title}}</b>
+				</div>
+				<p>{{func.desc}}</p>
+				<h4>标签</h4>
+				<div class="label-list">
+					<label ng-repeat="label in func.tags">{{label}}</label>
+				</div>
+			</dt>
+			<dd>
+				<h4>请求方法</h4>
+				<table class="table">
+					<tr>
+						<th>url</th>
+						<th>method</th>
+						<th>msg</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="">{{func.url.path || '空'}}</a>
+						</td>
+						<td>
+							<span>{{func.url.method || '空'}}</span>
+						</td>
+						<td>
+							<span>{{func.url.desc || '空'}}</span>
+						</td>
+					</tr>
+				</table>
+				<h4>参数说明</h4>
+				<table class="table">
+					<tr>
+						<th width="20%">字段</th>
+						<th width="20%">选项</th>
+						<th>描述</th>
+					</tr>
+					<tr ng-if="!func.arg.items">
+						<td colspan="3">
+							<span>空</span>
+						</td>
+					</tr>
+					<tr ng-repeat="i in func.arg.items">
+						<td><span class="color-dodgerblue">{{i.name}}</span></td>
+						<td>[{{i.type == 'O' ? '可选' : '必选'}}]</td>
+						<td>{{i.desc}}</td>
+					</tr>
+				</table>
+				<table class="table">
+					<tr>
+						<th>示例</th>
+					</tr>
+					<tr>
+						<td>
+							<div json-viewer="func.arg.example"></div>
+						</td>
+					</tr>
+				</table>
+				<table class="table">
+					<tr>
+						<th>描述</th>
+					</tr>
+					<tr>
+						<td>
+							<span>{{func.arg.desc || '空'}}</span>
+						</td>
+					</tr>
+				</table>
+
+				<h4>返回说明</h4>
+				<table class="table">
+					<tr>
+						<th width="20%">字段</th>
+						<th width="20%">类型</th>
+						<th>描述</th>
+					</tr>
+					<tr ng-if="!func.ret.items">
+						<td colspan="3">
+							<span>空</span>
+						</td>
+					</tr>
+					<tr ng-repeat="i in func.ret.items">
+						<td><span class="color-limegreen">{{i.name}}</span></td>
+						<td>
+							<span ng-if="i.type == 'O'">Object</span>
+							<span ng-if="i.type == 'S'">String</span>
+							<span ng-if="i.type == 'F'">Float</span>
+							<span ng-if="i.type == 'I'">Int</span>
+							<span ng-if="i.type == 'A'">Array</span>
+						</td>
+						<td>{{i.desc}}</td>
+					</tr>
+				</table>
+				<table class="table">
+					<tr>
+						<th>示例</th>
+					</tr>
+					<tr>
+						<td>
+							<div json-viewer="func.ret.example"></div>
+						</td>
+					</tr>
+				</table>
+				<table class="table">
+					<tr>
+						<th>描述</th>
+					</tr>
+					<tr>
+						<td>
+							<span>{{func.ret.desc || '空'}}</span>
+						</td>
+					</tr>
+				</table>
+			</dd>
+		</dl>
+	</article>
+</section>
