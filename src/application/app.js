@@ -76,7 +76,7 @@ angular.module('app')
             if (s) {
                 a = s.split('&');
                 o = {};
-                angular.forEach(a, function (v, k){
+                angular.forEach(a, function(v, k) {
                     var i = v.split('=');
                     o[i[0]] = decodeURI(i[1]);
                 });
@@ -92,8 +92,7 @@ angular.module('app')
     })
     .factory('config', function() {
         var ip = {
-            doc: 'https://api.gdy.io/',
-            sso: 'http://sso.dev.gdy.io/'
+            doc: '/doc',
         };
         return {
             ip: function(k) {
