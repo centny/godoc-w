@@ -59,7 +59,7 @@ angular.module('app')
             loadingLayer.in();
             connector.getDoc(params).then(function(rs) {
                 loadingLayer.out();
-                init(appTestData);
+                init(rs);
             }, function(err) {
                 loadingLayer.out();
                 console.error(err);
