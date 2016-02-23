@@ -15,15 +15,23 @@ angular.module('app').directive("headerDir", function() {
                     }].concat(v.pkgs);
                     $scope.itemCur = $scope.pkgs[0];
 
-
                     var tags = [];
                     angular.forEach(v.tags, function (i, k){
                         tags.push(k + '(' + i + ')');
                     });
                     $scope.tags = ['所有标签'].concat(tags);
-                    $scope.tagCur = $scope.tags[0];
+                    var search = $rootScope.getSearch();
+                    if(search && search.tags){
+                        angular.forEach($scope.tags, function (i, k){
+                            if(new RegExp('^' + search.tags + '\\([0-9]*\\)$').test(i)){
+                                $scope.tagCur = $scope.tags[k];
+                            }
+                        });
+                    }else{
+                        $scope.tagCur = $scope.tags[0];
+                    }
 
-                    // cancel();
+                    cancel();
                 }
             });
 
@@ -34,13 +42,14 @@ angular.module('app').directive("headerDir", function() {
             $scope.toggleTag = function (item){
                 var m = item.match('[^(]*') || [];
                 var t = m[0];
+                var href = '/';
                 if(!m){
                     return;
                 }
-                if(t == '所有标签'){
-                    t = '';
+                if(t !== '所有标签'){
+                    href += '?tags=' + t;
                 }
-                $rootScope.getDoc({tags: t});
+                window.location.href = href;
             };
         }
     };
