@@ -34,7 +34,7 @@ if [ "$1" != "" ];then
 	curl -o $o_srv/srvd_i $1/srvd_i
 	chmod +x $o_srv/srvd
 	chmod +x $o_srv/srvd_i
-	echo "./srvd_i \$1 dtmc \$2 \$3" >$o_srv/install.sh
+	echo "./srvd_i \$1 gdw \$2 \$3" >$o_srv/install.sh
 	chmod +x $o_srv/install.sh
 fi 
 cd $o_dir
