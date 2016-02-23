@@ -53,6 +53,8 @@ angular.module('app')
             console.log(rs);
         }
 
+        var appTestData = null;
+
         function getDoc(params) {
             loadingLayer.in();
             connector.getDoc(params).then(function(rs) {
