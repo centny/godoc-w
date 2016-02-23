@@ -53,7 +53,7 @@ angular.module('app')
             console.log(rs);
         }
 
-        var appTestData = null;
+        var appTestData = window.appTestData;
 
         function getDoc(params) {
             loadingLayer.in();
@@ -94,7 +94,7 @@ angular.module('app')
     })
     .factory('config', function() {
         var ip = {
-            doc: '/doc',
+            doc: 'https://api.gdy.io/doc',
         };
         return {
             ip: function(k) {
@@ -116,17 +116,21 @@ angular.module('app')
         return function(option) {
             return $http(option).then(function(response) {
                 var defer = $q.defer();
-                if (angular.isUndefined(response.data.code)) {
-                    defer.reject({
-                        type: -1,
-                        data: response
-                    });
-                } else if (response.data.code !== 0) {
-                    defer.reject({
-                        type: 1,
-                        data: response
-                    });
-                } else {
+                if('code' in response.data){
+                    if (angular.isUndefined(response.data.code)) {
+                        defer.reject({
+                            type: -1,
+                            data: response
+                        });
+                    } else if (response.data.code !== 0) {
+                        defer.reject({
+                            type: 1,
+                            data: response
+                        });
+                    } else {
+                        defer.resolve(response.data);
+                    }
+                }else{
                     defer.resolve(response.data);
                 }
                 return defer.promise;
