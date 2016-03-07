@@ -17,6 +17,9 @@ angular.module('app').directive("asideDir", function() {
             }
             $scope.gotoLocation = function(func, index) {
                 var sch = getSch();
+                if(sch){
+                    sch += '#i';
+                }
                 window.location.href = (sch || '/#i') + index + (func ? func.name : '');
             };
         }
