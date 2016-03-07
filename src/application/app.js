@@ -24,8 +24,16 @@ angular.module('app')
             }
         };
 
-        function hashchange() {
+        function getSch(){
             var sch = window.location.search;
+            if(sch && !/\/$/.test(sch)){
+                sch += '/';
+            }
+            return sch;
+        }
+
+        function hashchange() {
+            var sch = getSch();
             var hash = window.location.hash;
             var has = hash || $rootScope.appData.curLocation;
             if (has && $rootScope.appData.curLocation !== hash) {
@@ -46,7 +54,7 @@ angular.module('app')
             $rootScope.appData = rs;
             hashchange();
             var timer = $timeout(function() {
-                var sch = window.location.search;
+                var sch = getSch();
                 if (window.location.hash) {
                     window.location.href = (sch || '/') + window.location.hash;
                 }

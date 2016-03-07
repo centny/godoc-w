@@ -8,8 +8,16 @@ angular.module('app').directive("asideDir", function() {
             data: "="
         },
         controller: function($scope, $rootScope, $element, $timeout) {
+            function getSch(){
+                var sch = window.location.search;
+                if(sch && !/\/$/.test(sch)){
+                    sch += '/';
+                }
+                return sch;
+            }
             $scope.gotoLocation = function(func, index) {
-                window.location.href = '/#i' + index + (func ? func.name : '');
+                var sch = getSch();
+                window.location.href = (sch || '/#i') + index + (func ? func.name : '');
             };
         }
     };
