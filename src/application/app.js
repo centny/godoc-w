@@ -84,6 +84,9 @@ angular.module('app')
         function getSearch() {
             var o;
             var s = window.location.search.substring(1, window.location.search.length);
+            if(s){
+                s = s.replace(/\/$/,'');
+            }
             var a = [];
             if (s) {
                 a = s.split('&');
