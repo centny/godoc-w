@@ -107,7 +107,7 @@ angular.module('app')
     })
     .factory('config', function() {
         var ip = {
-            doc: 'http://localhost:2334/doc',
+            doc: 'doc',
         };
         return {
             ip: function(k) {
