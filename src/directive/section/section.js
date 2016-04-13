@@ -8,7 +8,25 @@ angular.module('app').directive("sectionDir", function() {
             data: "="
         },
         controller: function($scope, $element, $timeout) {
+            $scope.replace = function(obj) {
+                return obj.replace(/[\/\.]/g, "_");
+            };
 
+            function getSch() {
+                var sch = window.location.search;
+                if (sch && !/\/$/.test(sch)) {
+                    sch += '/';
+                }
+                return sch;
+            }
+            $scope.gotoLocation = function(item) {
+                var sch = getSch();
+                if (sch) {
+                    sch += '#';
+                }
+                console.log(item);
+                window.location.href = (sch || '/#') + (item.pkg + "/").replace(/[\/\.]+/g, "_") + item.name;
+            };
         }
     };
 });

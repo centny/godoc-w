@@ -1,6 +1,6 @@
 <aside>
     <dl ng-repeat="item in data.pkgs">
-        <dt title="{{item.name}}" class="text-ellipsis" ng-class="{ active: data.curLocation == '#i' + $index }" ng-click="gotoLocation(null , $index)">
+        <dt title="{{item.name}}" class="text-ellipsis" ng-class="{ active: data.curLocation == '#i' + $index }" ng-click="gotoLocation(null , item)">
             <p class="text-ellipsis" title="{{item.title}}">
                 {{item.title || '工程地址'}}
             </p>
@@ -8,7 +8,7 @@
         </dt>
         <dd>
             <ul>
-                <li ng-repeat="func in item.funcs" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoLocation(func, $parent.$index)">
+                <li ng-repeat="func in item.funcs" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoLocation(func, item)">
                     <p class="text-ellipsis">
                         <b title="{{func.name}}">{{func.name}}</b>
                     </p>

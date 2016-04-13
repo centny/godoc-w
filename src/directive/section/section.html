@@ -1,11 +1,11 @@
 <section>
-	<article ng-repeat="item in data.pkgs" id="i{{$index}}">
+	<article ng-repeat="item in data.pkgs" id="{{replace(item.name)}}">
 		<h1 title="{{item.name}}">
 			{{item.name}}
 			<span> / </span>
 			{{item.title || '工程地址'}}
 		</h1>
-		<dl ng-repeat="func in item.funcs" id="i{{$parent.$index + func.name}}">
+		<dl ng-repeat="func in item.funcs" id="{{replace(item.name) + func.name}}">
 			<dt>
 				<div class="color-darkcyan">
 					<span class="time">
@@ -138,6 +138,22 @@
 						<td>
 							<span>{{func.ret.desc || '空'}}</span>
 						</td>
+					</tr>
+				</table>
+				<h4>相关</h4>
+				<table class="table">
+					<tr>
+						<th width="20%">接口</th>
+						<th>描述</th>
+					</tr>
+					<tr ng-if="!func.see">
+						<td colspan="2">
+							<span>空</span>
+						</td>
+					</tr>
+					<tr ng-repeat="i in func.see">
+						<td><a class="color-limegreen" ng-click="gotoLocation(i)">{{i.name}}</span></td>
+						<td>{{i.desc}}</td>
 					</tr>
 				</table>
 			</dd>

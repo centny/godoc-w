@@ -15,12 +15,12 @@ angular.module('app').directive("asideDir", function() {
                 }
                 return sch;
             }
-            $scope.gotoLocation = function(func, index) {
+            $scope.gotoLocation = function(func, item) {
                 var sch = getSch();
                 if (sch) {
-                    sch += '#i';
+                    sch += '#';
                 }
-                window.location.href = (sch || '/#i') + index + (func ? func.name : '');
+                window.location.href = (sch || '/#') + item.name.replace(/[\/\.]+/g, "_") + (func ? func.name : '');
             };
         }
     };
