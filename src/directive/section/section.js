@@ -8,7 +8,7 @@ angular.module('app').directive("sectionDir", function() {
             data: "="
         },
         controller: function($scope, $element, $timeout) {
-            
+
         }
     };
 });

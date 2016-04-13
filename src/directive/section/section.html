@@ -23,6 +23,17 @@
 				</div>
 			</dt>
 			<dd>
+				<h4 ng-show="func.ws">扩展文档</h4>
+				<table class="table" ng-show="func.ws">
+					<tr>
+						<th width="20%">文档</th>
+						<th>描述</th>
+					</tr>
+					<tr ng-repeat="i in func.ws">
+						<td><a class="color-dodgerblue" href="doc/html/{{i.key}}">{{i.index}}</span></td>
+						<td>{{i.desc}}</td>
+					</tr>
+				</table>
 				<h4>请求方法</h4>
 				<table class="table">
 					<tr>

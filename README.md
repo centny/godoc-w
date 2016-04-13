@@ -1,2 +1,2 @@
-doc
+the golang document
 ===

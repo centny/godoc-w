@@ -24,9 +24,9 @@ angular.module('app')
             }
         };
 
-        function getSch(){
+        function getSch() {
             var sch = window.location.search;
-            if(sch && !/\/$/.test(sch)){
+            if (sch && !/\/$/.test(sch)) {
                 sch += '/';
             }
             return sch;
@@ -84,8 +84,8 @@ angular.module('app')
         function getSearch() {
             var o;
             var s = window.location.search.substring(1, window.location.search.length);
-            if(s){
-                s = s.replace(/\/$/,'');
+            if (s) {
+                s = s.replace(/\/$/, '');
             }
             var a = [];
             if (s) {
@@ -107,7 +107,7 @@ angular.module('app')
     })
     .factory('config', function() {
         var ip = {
-            doc: 'https://api.gdy.io/doc',
+            doc: 'http://localhost:2334/doc',
         };
         return {
             ip: function(k) {
@@ -129,7 +129,7 @@ angular.module('app')
         return function(option) {
             return $http(option).then(function(response) {
                 var defer = $q.defer();
-                if('code' in response.data){
+                if ('code' in response.data) {
                     if (angular.isUndefined(response.data.code)) {
                         defer.reject({
                             type: -1,
@@ -143,7 +143,7 @@ angular.module('app')
                     } else {
                         defer.resolve(response.data);
                     }
-                }else{
+                } else {
                     defer.resolve(response.data);
                 }
                 return defer.promise;

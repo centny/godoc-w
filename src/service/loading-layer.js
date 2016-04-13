@@ -1,10 +1,10 @@
-(function (win,doc){
-    win.loadingLayer = (function (){
-        if(win.loadingLayer){
+(function(win, doc) {
+    win.loadingLayer = (function() {
+        if (win.loadingLayer) {
             return win.loadingLayer;
         }
-        
-        (function (){
+
+        (function() {
             win.loadingLayerStyleText = [
                 '.loading-layer{position:fixed;width:100%;height:100%;top:0;left:0;background:rgba(0,0,0,.3);z-index:999;transition:opacity .1s;}',
                 '.loading-circle{position:absolute;left:50%;top:50%;display:block;width:35px;height:35px;margin:-20px 0 0 -20px;}',
@@ -18,16 +18,16 @@
             ].join('');
             var head = doc.querySelectorAll('head').item(0);
             var style = document.createElement('style');
-            style.rel="stylesheet";
+            style.rel = "stylesheet";
             style.textContent = win.loadingLayerStyleText;
             head.appendChild(style);
         })();
 
-        var Loading = function (){};
+        var Loading = function() {};
         var node = {};
         Loading.fn = Loading.prototype;
-        Loading.fn.in = function (){
-            if(node.d){
+        Loading.fn.in = function() {
+            if (node.d) {
                 return;
             }
             var f = doc.createDocumentFragment();
@@ -40,23 +40,23 @@
             doc.body.appendChild(f);
         };
 
-        Loading.fn.out = function (){
-            if(!node.d){
+        Loading.fn.out = function() {
+            if (!node.d) {
                 return;
             }
             node.d.style.opacity = 0;
-            setTimeout(function (){
-                if(!node.d){
+            setTimeout(function() {
+                if (!node.d) {
                     return;
                 }
                 node.d.parentNode.removeChild(node.d);
                 delete node.d;
                 delete node.i;
-            },100);
+            }, 100);
         };
         return new Loading();
     })();
-    win.addEventListener("beforeunload", function () {
+    win.addEventListener("beforeunload", function() {
         this.loadingLayer.out();
     }, false);
-})(window,document);
+})(window, document);

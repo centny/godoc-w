@@ -16,18 +16,18 @@ angular.module('app').directive("headerDir", function() {
                     $scope.itemCur = $scope.pkgs[0];
 
                     var tags = [];
-                    angular.forEach(v.tags, function (i, k){
+                    angular.forEach(v.tags, function(i, k) {
                         tags.push(k + '(' + i + ')');
                     });
                     $scope.tags = ['所有标签'].concat(tags);
                     var search = $rootScope.getSearch();
-                    if(search && search.tags){
-                        angular.forEach($scope.tags, function (i, k){
-                            if(new RegExp('^' + search.tags + '\\([0-9]*\\)$').test(i)){
+                    if (search && search.tags) {
+                        angular.forEach($scope.tags, function(i, k) {
+                            if (new RegExp('^' + search.tags + '\\([0-9]*\\)$').test(i)) {
                                 $scope.tagCur = $scope.tags[k];
                             }
                         });
-                    }else{
+                    } else {
                         $scope.tagCur = $scope.tags[0];
                     }
 
@@ -35,18 +35,18 @@ angular.module('app').directive("headerDir", function() {
                 }
             });
 
-            $scope.toggleItem = function (item){
+            $scope.toggleItem = function(item) {
                 console.log(item);
             };
 
-            $scope.toggleTag = function (item){
+            $scope.toggleTag = function(item) {
                 var m = item.match('[^(]*') || [];
                 var t = m[0];
                 var href = '/';
-                if(!m){
+                if (!m) {
                     return;
                 }
-                if(t !== '所有标签'){
+                if (t !== '所有标签') {
                     href += '?tags=' + t;
                 }
                 window.location.href = href;
