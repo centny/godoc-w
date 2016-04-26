@@ -79,9 +79,11 @@
 					<tr>
 						<th>示例</th>
 					</tr>
-					<tr>
+					<tr ng-repeat="i in func.arg.example">
 						<td>
-							<div json-viewer="func.arg.example"></div>
+							<div>{{i.cmt}}</div>
+							<div ng-if="is_obj(i.data)" json-viewer="i.data"></div>
+							<div ng-if="!is_obj(i.data)">{{i.data}}</div>
 						</td>
 					</tr>
 				</table>
@@ -124,9 +126,11 @@
 					<tr>
 						<th>示例</th>
 					</tr>
-					<tr>
+					<tr ng-repeat="i in func.ret.example">
 						<td>
-							<div json-viewer="func.ret.example"></div>
+							<div>{{i.cmt}}</div>
+							<div ng-if="is_obj(i.data)" json-viewer="i.data"></div>
+							<div ng-if="!is_obj(i.data)">{{i.data}}</div>
 						</td>
 					</tr>
 				</table>
@@ -140,8 +144,8 @@
 						</td>
 					</tr>
 				</table>
-				<h4>相关</h4>
-				<table class="table">
+				<h4 ng-if="func.see">相关</h4>
+				<table class="table" ng-if="func.see">
 					<tr>
 						<th width="20%">接口</th>
 						<th>描述</th>

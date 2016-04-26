@@ -27,6 +27,9 @@ angular.module('app').directive("sectionDir", function() {
                 console.log(item);
                 window.location.href = (sch || '/#') + (item.pkg + "/").replace(/[\/\.]+/g, "_") + item.name;
             };
+            $scope.is_obj = function(item) {
+                return typeof item == "object";
+            };
         }
     };
 });
