@@ -83,7 +83,7 @@
 						<td>
 							<div ng-bind-html="repl_ws(i.cmt)"></div>
 							<div ng-if="is_obj(i.data)" json-viewer="i.data"></div>
-							<div ng-if="!is_obj(i.data)">{{repl_ws(i.data)}}</div>
+							<div ng-if="!is_obj(i.data)" ng-bind-html="repl_ws(i.data)"></div>
 						</td>
 					</tr>
 				</table>
@@ -130,7 +130,7 @@
 						<td>
 							<div ng-bind-html="repl_ws(i.cmt)"></div>
 							<div ng-if="is_obj(i.data)" json-viewer="i.data"></div>
-							<div ng-if="!is_obj(i.data)">{{repl_ws(i.data)}}</div>
+							<div ng-if="!is_obj(i.data)" ng-bind-html="repl_ws(i.data)"></div>
 						</td>
 					</tr>
 				</table>

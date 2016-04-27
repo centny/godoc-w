@@ -31,7 +31,7 @@ angular.module('app').directive("sectionDir", function() {
             };
             $scope.repl_ws = function(item) {
                 if (item) {
-                    return $sce.trustAsHtml(item.replace("\n", "<br/>"));
+                    return $sce.trustAsHtml(item.replace(/\n/g, "<br/>"));
                 } else {
                     return "";
                 }
