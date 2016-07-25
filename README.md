@@ -1,9 +1,12 @@
 the golang http api document
 ===
-
+![Example](https://raw.githubusercontent.com/Centny/godoc-w/master/example.png)
 ### Features
 * support golang standard `http` handler and `gwf/routing` handler 
 * `.md` file supported(need the `pandoc` command)
+* json format example supported
+* tag api supported
+* search supported.
 
 ### Install
 * install `go`/`npm`/`gulp`/`bower`
@@ -34,6 +37,9 @@ the golang http api document
 ### Usage
 
 doc:<https://github.com/Centny/gwf/blob/master/wdoc/README_cn.md>
-examp:<https://github.com/Centny/gwf/tree/master/wdoc/test>
+example:<https://github.com/Centny/gwf/tree/master/wdoc/test>
+
+### Example
+
 
 
