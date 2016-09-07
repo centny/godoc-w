@@ -15,12 +15,19 @@ angular.module('app').directive("asideDir", function() {
                 }
                 return sch;
             }
-            $scope.gotoLocation = function(func, item) {
+            $scope.gotoId = function(id) {
                 var sch = getSch();
                 if (sch) {
                     sch += '#';
                 }
-                window.location.href = (sch || '/#') + item.name.replace(/[\/\.]+/g, "_") + (func ? func.name : '');
+                window.location.href = (sch || '/#') + id;
+            };
+            $scope.gotoFunc = function(func) {
+                var sch = getSch();
+                if (sch) {
+                    sch += '#';
+                }
+                window.location.href = (sch || '/#') + (func.pkg + "/" + func.name).replace(/[\/\.]+/g, "_");
             };
         }
     };

@@ -1,11 +1,24 @@
 <section>
-	<article ng-repeat="item in data.pkgs" id="{{replace(item.name)}}">
-		<h1 title="{{item.name}}">
-			{{item.name}}
-			<span> / </span>
-			{{item.title || '工程地址'}}
+	<article>
+		<h1 title="扩展文档" id="ext_doc">
+			扩展文档
 		</h1>
-		<dl ng-repeat="func in item.funcs" id="{{replace(item.name) + func.name}}">
+		<dl ng-repeat="tx in data.text" id="{{'text_'+$index}}">
+			<h2 title="{{tx.title}}">
+				{{tx.title}}
+			</h2>
+			<code>
+				{{tx.desc}}
+			</code>
+			<hr>
+    	</dl>
+		<dl ng-repeat="web in data.webs" id="{{web.key}}">
+			<iframe src="{{'/doc/html/'+web.key}}" width="100%" frameborder="0" scrolling="no" style="margin-lef:5px" marginheight="0" marginwidth="0" onLoad="iframeSync(this)"></iframe>
+    	</dl>
+		<h1 title="接口文档" id="api_doc">
+			接口文档
+		</h1>
+		<dl ng-repeat="func in data.func" id="{{replace(func.pkg+ '/' + func.name)}}">
 			<dt>
 				<div class="color-darkcyan">
 					<span class="time">

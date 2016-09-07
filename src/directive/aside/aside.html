@@ -1,14 +1,39 @@
 <aside>
-    <dl ng-repeat="item in data.pkgs">
-        <dt title="{{item.name}}" class="text-ellipsis" ng-class="{ active: data.curLocation == '#i' + $index }" ng-click="gotoLocation(null , item)">
-            <p class="text-ellipsis" title="{{item.title}}">
-                {{item.title || '工程地址'}}
+    <dl ng-show="(data.webs&&data.webs.length)||(data.text&&data.text.length)">
+        <dt title="扩展文档" class="text-ellipsis" ng-class="{ active: data.curLocation == '#i' + $index }" ng-click="gotoId('ext_doc')">
+            <p class="text-ellipsis">
+                扩展文档
             </p>
-            <span>{{item.name}}</span>
+            <span></span>
         </dt>
         <dd>
             <ul>
-                <li ng-repeat="func in item.funcs" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoLocation(func, item)">
+                <li ng-repeat="tx in data.text" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoId('text_'+$index)">
+                    <p class="text-ellipsis">
+                        <b title="">{{tx.title}}</b>
+                    </p>
+                </li>
+                <li ng-repeat="web in data.webs" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoId(web.key)">
+                    <p class="text-ellipsis">
+                        <b title="">{{web.desc}}</b>
+                    </p>
+                    <p class="text-ellipsis title" title="{{web.index}}">
+                        {{web.index}}
+                    </p>
+                </li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt title="接口文档" class="text-ellipsis" ng-class="{ active: data.curLocation == '#i' + $index }" ng-click="gotoId('api_doc')">
+            <p class="text-ellipsis" title="{{item.title}}">
+                接口文档
+            </p>
+            <span></span>
+        </dt>
+        <dd>
+            <ul>
+                <li ng-repeat="func in data.func" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoFunc(func)">
                     <p class="text-ellipsis">
                         <b title="{{func.name}}">{{func.name}}</b>
                     </p>

@@ -1,19 +1,5 @@
-(function(win, doc) {
-    var h = doc.querySelector('html');
-
-    function fn() {
-        var w = doc.documentElement.clientWidth || doc.body.clientWidth;
-        h.style.fontSize = w / 320 + "rem";
-    }
-    // fn();
-    // win.addEventListener('resize', fn, false);
-})(window, document);
-var application = angular.module('app', ['tmpl', 'platypus.jsonviewer']);
-angular.module('app')
+angular.module('app', ['tmpl', 'platypus.jsonviewer'])
     .config(function($httpProvider) {
-        // Modifying 'Content-Type' to 'application/x-www-form-urlencoded' instead of 'application/json'
-        // will make post request to use 'form data' to transfer the request body, instead of using 'request payload'
-        // which the backend server doesn't support.
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     })
     .controller('mainCtrl', function($scope, $rootScope, $http, $timeout, connector, config) {
@@ -60,7 +46,6 @@ angular.module('app')
                 }
                 $timeout.cancel(timer);
             }, 200);
-            console.log(rs);
         }
 
         var appTestData = window.appTestData;
@@ -107,7 +92,7 @@ angular.module('app')
     })
     .factory('config', function() {
         var ip = {
-            doc: 'doc',
+            doc: '/doc/case/data',
         };
         return {
             ip: function(k) {
@@ -141,6 +126,7 @@ angular.module('app')
                             data: response
                         });
                     } else {
+                        // console.log(response.data);
                         defer.resolve(response.data);
                     }
                 } else {

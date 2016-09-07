@@ -1,3 +1,9 @@
+function iframeSync(ifm) {
+    var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+    if (ifm != null && subWeb != null) {
+        ifm.height = subWeb.body.scrollHeight;
+    }
+}
 angular.module('app').directive("sectionDir", function() {
     return {
         templateUrl: 'directive/section/section.html',

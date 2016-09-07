@@ -3,8 +3,9 @@ var _ = require('gulp-load-plugins')();
 var bowerFiles = require('main-bower-files');
 var browserSync = require('browser-sync');
 var del = require('del');
-
 var sync = _.sync(gulp);
+var url = require('url');
+var proxy = require('proxy-middleware');
 
 var sourceFiles = {
     html: 'src/*.html',
@@ -47,25 +48,34 @@ gulp.task('init', _.shell.task('bower install'));
 
 gulp.task('compile:html', function() {
     return gulp.src(sourceFiles.html)
-        .pipe(_.inject(gulp.src(bowerFiles()), { name: 'bower' }))
+        .pipe(_.inject(gulp.src(bowerFiles()), {
+            name: 'bower'
+        }))
         .pipe(gulp.dest(destFiles.dir));
 });
 
 gulp.task('compile:css', function() {
     return gulp.src(styleFiles)
-        .pipe(_.sass({ style: 'expanded' }))
+        .pipe(_.sass({
+            style: 'expanded'
+        }))
         .pipe(gulp.dest(destFiles.dir));
 });
 
 gulp.task('compile:js', function() {
     return gulp.src(scriptsFiles)
-        .pipe(_.ngAnnotate({ single_quotes: true }))
+        .pipe(_.ngAnnotate({
+            single_quotes: true
+        }))
         .pipe(gulp.dest(destFiles.dir));
 });
 
 gulp.task('compile:tmpl', function() {
     return gulp.src(templateFiles)
-        .pipe(_.minifyHtml({ empty: true, quotes: true }))
+        .pipe(_.minifyHtml({
+            empty: true,
+            quotes: true
+        }))
         .pipe(_.ngTemplate({
             moduleName: 'tmpl',
             standalone: true,
@@ -93,7 +103,10 @@ gulp.task('build:asset', sync.sync(['clean', 'init', 'compile']), function() {
         .pipe(_.useref())
         .pipe(_.if('*.css', _.minifyCss()))
         .pipe(_.if('*.js', _.uglify()))
-        .pipe(_.if('*.html', _.minifyHtml({ empty: true, comments: true })))
+        .pipe(_.if('*.html', _.minifyHtml({
+            empty: true,
+            comments: true
+        })))
         .pipe(gulp.dest(buildFiles.dir));
 });
 
@@ -104,12 +117,15 @@ gulp.task('clean', function() {
 });
 
 gulp.task('serve', sync.sync(['clean', 'init', 'compile', 'watch']), function() {
+    var proxyOptions = url.parse('http://localhost:2883/doc');
+    proxyOptions.route = '/doc';
     browserSync.init({
         server: {
             baseDir: 'dist/',
             routes: {
                 '/bower_components': 'bower_components'
-            }
+            },
+            middleware: [proxy(proxyOptions)]
         },
         port: 1906,
         ui: {
@@ -119,5 +135,4 @@ gulp.task('serve', sync.sync(['clean', 'init', 'compile', 'watch']), function() 
     });
     gulp.watch('dist/**/*').on('change', browserSync.reload);
 });
-
 gulp.task('default', ['serve']);

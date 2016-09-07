@@ -1,0 +1,13 @@
+<mods>
+    <h2>模块列表</h2>
+    <table>
+    	<tr>
+    		<td><strong>名称</strong></td>
+    		<td style="padding-left:10px"><strong>概要</strong></td>
+    	</tr>
+        <tr ng-repeat="mod in data">
+            <td><li><strong><a href="module.html?key={{mod.title}}">{{mod.title+'('+mod.api_count+')'}}</strong></a></li></td>
+            <td style="padding-left:10px">{{mod.desc}}</td>
+        </tr>
+    </table>
+</mods>
