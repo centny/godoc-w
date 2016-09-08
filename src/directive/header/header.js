@@ -1,4 +1,4 @@
-angular.module('app').directive("headerDir", function() {
+angular.module('app').directive("headerDir", function () {
     return {
         templateUrl: 'directive/header/header.html',
         restrict: "E",
@@ -7,8 +7,8 @@ angular.module('app').directive("headerDir", function() {
         scope: {
             data: "="
         },
-        controller: function($scope, $rootScope, $element, $timeout) {
-            var cancel = $scope.$watch('data', function(v) {
+        controller: function ($scope, $rootScope, $element, $timeout) {
+            var cancel = $scope.$watch('data', function (v) {
                 if (v) {
                     $scope.pkgs = [{
                         name: '所有工程'
@@ -16,13 +16,13 @@ angular.module('app').directive("headerDir", function() {
                     $scope.itemCur = $scope.pkgs[0];
 
                     var tags = [];
-                    angular.forEach(v.tags, function(i, k) {
+                    angular.forEach(v.tags, function (i, k) {
                         tags.push(k + '(' + i + ')');
                     });
                     $scope.tags = ['所有标签'].concat(tags);
                     var search = $rootScope.getSearch();
                     if (search && search.tags) {
-                        angular.forEach($scope.tags, function(i, k) {
+                        angular.forEach($scope.tags, function (i, k) {
                             if (new RegExp('^' + search.tags + '\\([0-9]*\\)$').test(i)) {
                                 $scope.tagCur = $scope.tags[k];
                             }
@@ -35,11 +35,11 @@ angular.module('app').directive("headerDir", function() {
                 }
             });
 
-            $scope.toggleItem = function(item) {
+            $scope.toggleItem = function (item) {
                 console.log(item);
             };
 
-            $scope.toggleTag = function(item) {
+            $scope.toggleTag = function (item) {
                 var m = item.match('[^(]*') || [];
                 var t = m[0];
                 var href = '/';
@@ -50,6 +50,9 @@ angular.module('app').directive("headerDir", function() {
                     href += '?tags=' + t;
                 }
                 window.location.href = href;
+            };
+            $scope.toIdx = function () {
+                window.location.href =  'index.html';
             };
         }
     };

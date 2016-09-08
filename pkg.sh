@@ -27,6 +27,7 @@ go build -o $o_srv/$n_srv github.com/Centny/gwf/cmd/godoc-w
 npm install
 gulp build
 cp -rf build/* $o_srv/www
+cp -f src/favicon.ico $o_srv/www
 
 ###
 if [ "$1" != "" ];then

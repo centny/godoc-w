@@ -8,11 +8,11 @@
         </dt>
         <dd>
             <ul>
-                <li ng-repeat="tx in data.text" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoId('text_'+$index)">
+                <!--<li ng-repeat="tx in data.text" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoId('text_'+$index)">
                     <p class="text-ellipsis">
                         <b title="">{{tx.title}}</b>
                     </p>
-                </li>
+                </li>-->
                 <li ng-repeat="web in data.webs" ng-class="{ active: data.curLocation == '#i' + $parent.$index + func.name }" ng-click="gotoId(web.key)">
                     <p class="text-ellipsis">
                         <b title="">{{web.desc}}</b>
